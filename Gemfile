@@ -34,6 +34,7 @@ gem "omniauth-github"
 gem 'figaro'
 gem 'rspec-rails'
 gem 'capybara'
+gem 'basscss-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
