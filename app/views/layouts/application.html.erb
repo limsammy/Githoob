@@ -3,12 +3,26 @@
   <head>
     <title>Apicurious</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
-
   <body>
+    <div class="clearfix white bg-black">
+      <div class="left">
+        <h3 class="btn py2 m0">Githoob</h3>
+      </div>
+      <div class="right">
+          <div data-details class="fixed top-0 right-0 bottom-0 left-0"></div>
+          <div class="relative">
+            <a href="#!" class="btn py2 m0">My Account</a>
+          </div>
+      </div>
+      <div class="clearfix sm-hide"></div>
+      <div class="overflow-hidden px2">
+      </div>
+    </div>
     <%= yield %>
   </body>
 </html>
