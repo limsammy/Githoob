@@ -16,7 +16,8 @@ RSpec.configure do |config|
     provider: "github",
     uid: "123456789",
     info: {
-      nickname: 'samlim',
+      name: 'Sam Lim',
+      nickname: 'limsammy',
       email: 'sa@sam.com',
       image: 'https://avatars0.githubusercontent.com/u/10293366'
     },
