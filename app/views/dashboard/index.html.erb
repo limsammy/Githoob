@@ -1,13 +1,13 @@
 <script type="text/javascript">
 function showonlyone(thechosenone) {
-  $('.tabs').each(function(index) {
-    if ($(this).attr("id") == thechosenone) {
-      $(this).show(200);
-    }
-    else {
-      $(this).hide(600);
-    }
-  });
+$('.tabs').each(function(index) {
+if ($(this).attr("id") == thechosenone) {
+$(this).show(200);
+}
+else {
+$(this).hide(600);
+}
+});
 }
 </script>
 <div class="welcome clearfix">
@@ -38,14 +38,34 @@ function showonlyone(thechosenone) {
         <% end %>
       </ul>
     </div>
+    <div class="tabs" id="tabs2">
+      <ul class="following_user_list">
+        <% @following_commits.each do |user, commits| %>
+        <li class="following_user">
+          <h5><%= user %></h5>
+          <ul class="following_user_commits">
+            <% commits.each do |commit| %>
+            <li class="following_commit">
+              <p><%= commit[:commit][:message] %></p>
+              <p><%= commit[:repository][:full_name] %></p>
+              <p><%= commit[:commit][:author][:date] %></p>
+            </li>
+            <% end %>
+          </ul>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="tabs" id="tabs3">
+      <ul class="repo_feed">
+        <% @repos.each do |repo| %>
+        <li class="repo">
+          <h5><%= repo[:full_name] %></h5>
+          <p><%= repo[:language] %></p>
+          <p><%= repo[:updated_at] %></p>
+        </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-</div>
-<div class="clearfix">
-  
-</div>
-<div class="tabs" id="tabs2">
-  <%= @recent_commits %>
-</div>
-<div class="tabs" id="tabs3">
-  <%= @recent_commits %>
 </div>
