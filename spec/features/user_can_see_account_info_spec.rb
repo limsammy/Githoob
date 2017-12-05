@@ -15,11 +15,11 @@ feature "User can view basic account info and activity on dashboard" do
 
     expect(page).to have_css '.avatar'
     expect(page).to have_css '.starred_repos'
-    expect(page).to have_content 'Starred Repos (1)'
+    expect(page).to have_content 'Starred Repos (9)'
     expect(page).to have_css '.followers'
     expect(page).to have_content 'Followers (1)'
     expect(page).to have_css '.following'
-    expect(page).to have_content 'Following (3)'
+    expect(page).to have_content 'Following (4)'
   end
 
   scenario "user can see summary of past commits" do
