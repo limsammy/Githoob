@@ -9,7 +9,25 @@ class GithubAdapterService
   end
 
   def get_basic_info
-    info = @conn.get('/user').body
-    JSON.parse(info, symbolize_names: true)
+    response = @conn.get('/user').body
+    JSON.parse(response, symbolize_names: true)
+  end
+
+  def get_starred_repos_count
+    response = @conn.get('/user/starred').body
+    parsed = JSON.parse(response)
+    parsed.count
+  end
+
+  def get_recent_commits
+    
+  end
+
+  def get_recent_following_commits
+    
+  end
+
+  def get_repos
+    
   end
 end
