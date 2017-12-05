@@ -5,7 +5,7 @@ function showonlyone(thechosenone) {
       $(this).show(200);
     }
     else {
-    $(this).hide(600);
+      $(this).hide(600);
     }
   });
 }
@@ -13,6 +13,13 @@ function showonlyone(thechosenone) {
 <div class="welcome clearfix">
   <div class="col col-2 avatar">
     <%= image_tag(@user.image, class: "fit") %>
+    <div class="info">
+      <p>Welcome, <%= @user.name %></p>
+      <p class="h6">Username: <%= @user.nickname %></p>
+      <p class="h6">Starred: <%= @starred_repos %></p>
+      <p class="h6">Following: <%= @basic_info[:following] %></p>
+      <p class="h6">Followers: <%= @basic_info[:followers] %></p>
+    </div>
   </div>
   <div class="col col-10 commit_feed">
     <div class="center">
@@ -20,19 +27,21 @@ function showonlyone(thechosenone) {
       <a href="javascript:showonlyone('tabs2');" class="btn btn-primary">Following Recent Activity</a>
       <a href="javascript:showonlyone('tabs3');" class="btn btn-primary">My Repositories</a>
     </div>
+    <div class="tabs" id="tabs1">
+      <ul>
+        <% @recent_commits.each do |commit| %>
+        <li class="commit">
+          <p><%= commit[:commit][:message] %></p>
+          <p><%= commit[:repository][:full_name] %></p>
+          <p><%= commit[:commit][:author][:date] %></p>
+        </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
 <div class="clearfix">
-  <div class="col col-2 info">
-    <p>Welcome, <%= @user.name %></p>
-    <p class="h6">Username: <%= @user.nickname %></p>
-    <p class="h6">Starred: <%= @starred_repos %></p>
-    <p class="h6">Following: <%= @basic_info[:following] %></p>
-    <p class="h6">Followers: <%= @basic_info[:followers] %></p>
-  </div>
-</div>
-<div class="tabs" id="tabs1">
-  <%= @recent_commits %>
+  
 </div>
 <div class="tabs" id="tabs2">
   <%= @recent_commits %>

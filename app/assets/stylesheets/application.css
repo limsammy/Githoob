@@ -21,3 +21,6 @@
 .commit_feed {
   padding-left: 1em;
 }
+.tabs {
+  display: none;
+}
