@@ -9,18 +9,19 @@ class GithubAdapterService
   end
 
   def get_basic_info
-    response = @conn.get('/user').body
-    JSON.parse(response, symbolize_names: true)
+    response = @conn.get('/user')
+    JSON.parse(response.body, symbolize_names: true)
   end
 
   def get_starred_repos_count
-    response = @conn.get('/user/starred').body
-    parsed = JSON.parse(response)
+    response = @conn.get('/user/starred')
+    parsed = JSON.parse(response.body)
     parsed.count
   end
 
   def get_recent_commits
-    
+    response = @conn.get("/search/commits?q=author:#{@user.nickname}&sort=author-date")
+    JSON.parse(response.body, symbolize_names: true)[:items][0..9]
   end
 
   def get_recent_following_commits
