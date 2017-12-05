@@ -16,7 +16,9 @@
       <div class="right">
             <div class="relative">
               <a href="#!" class="btn py2 m0">My Account</a>
-              <%= link_to "Log out", signout_path, class: "btn py2 m0" %>
+              <% if current_user %>
+                <%= link_to "Logout", signout_path, class: "btn py2 m0" %>
+              <% end %>
             </div>
           </div>
       </div>
