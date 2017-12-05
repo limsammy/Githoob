@@ -11,7 +11,7 @@ feature "User can view basic account info and activity on dashboard" do
 
     click_on 'Login with Github'
 
-    expect(current_path).to eq dashboard_path
+    expect(current_path).to eq root_path
 
     expect(page).to have_css '.avatar'
     expect(page).to have_css '.starred_repos'
@@ -27,7 +27,7 @@ feature "User can view basic account info and activity on dashboard" do
 
     click_on 'Login with Github'
 
-    expect(current_path). to eq dashboard_path
+    expect(current_path). to eq root_path
 
     expect(page).to have_css '.commit_feed'
     expect(page).to have_css('.commit', count: 10)

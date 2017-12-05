@@ -13,7 +13,8 @@ feature "User logs in with Github" do
 
     click_on "Login with Github"
 
-    expect(current_path).to eq dashboard_path
+    expect(current_path).to eq root_path
+    binding.pry
     expect(page).to have_content 'samlim'
     expect(page).to have_link 'Logout'
     expect(page).to_not have_content 'Login with Github'
