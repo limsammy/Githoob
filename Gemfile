@@ -35,6 +35,7 @@ gem 'figaro'
 gem 'rspec-rails'
 gem 'capybara'
 gem 'basscss-rails'
+gem 'pry'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
