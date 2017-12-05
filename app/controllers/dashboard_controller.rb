@@ -1,5 +1,4 @@
 class DashboardController < ApplicationController
-  def index
-    @user = current_user
-  end
+  before_action :require_user
+  def index; end
 end
