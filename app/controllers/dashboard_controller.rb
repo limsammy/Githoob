@@ -3,10 +3,11 @@ class DashboardController < ApplicationController
 
   def index
     @user = current_user
-    @basic_info = GithubService.new(@user).get_basic_info
-    @starred_repos = GithubService.new(@user).get_starred_repos_count
-    @recent_commits = GithubService.new(@user).get_recent_commits
-    @following_commits = GithubService.new(@user).get_recent_following_commits
-    @repos = GithubService.new(@user).get_repos
+    client = GithubAdapterService.new(@user)
+    @basic_info = client.get_basic_info
+    @starred_repos = client.get_starred_repos_count
+    @recent_commits = client.get_recent_commits
+    @following_commits = client.get_recent_following_commits
+    @repos = client.get_repos
   end
 end
