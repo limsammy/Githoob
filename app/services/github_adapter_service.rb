@@ -38,7 +38,7 @@ class GithubAdapterService
   def get_recent_following_commits
     following_commits = {}
     following_users.each do |user_nickname|
-      response = @conn.get("/search/commits?q=author:#{@user_nickname}&sort=author-date")
+      response = @conn.get("/search/commits?q=author:#{user_nickname}&sort=author-date")
       following_commits[user_nickname] = JSON.parse(response.body, symbolize_names: true)[:items][0..2]
     end
     following_commits
