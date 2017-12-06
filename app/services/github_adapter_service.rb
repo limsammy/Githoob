@@ -1,5 +1,4 @@
 class GithubAdapterService
-  attr_reader :user, :conn
 
   def initialize(user)
     @user = user
@@ -11,25 +10,20 @@ class GithubAdapterService
   end
 
   def get_basic_info
-    response = @conn.get('/user')
-    JSON.parse(response.body, symbolize_names: true)
+    get_json('/user')
   end
 
   def get_starred_repos_count
-    response = @conn.get('/user/starred')
-    parsed = JSON.parse(response.body)
-    parsed.count
+    get_json('/user/starred').count
   end
 
   def get_recent_commits
-    response = @conn.get("/search/commits?q=author:#{@user.nickname}&sort=author-date")
-    JSON.parse(response.body, symbolize_names: true)[:items][0..9]
+    get_json("/search/commits?q=author:#{@user.nickname}&sort=author-date")[:items][0..9]
   end
 
   def following_users
     following_users = []
-    response = @conn.get("/users/#{@user.nickname}/following")
-    JSON.parse(response.body, symbolize_names: true).each do |user|
+    get_json("/users/#{@user.nickname}/following").each do |user|
       following_users << user[:login]
     end
     following_users
@@ -38,14 +32,20 @@ class GithubAdapterService
   def get_recent_following_commits
     following_commits = {}
     following_users.each do |user_nickname|
-      response = @conn.get("/search/commits?q=author:#{user_nickname}&sort=author-date")
-      following_commits[user_nickname] = JSON.parse(response.body, symbolize_names: true)[:items][0..2]
+      following_commits[user_nickname] = get_json("/search/commits?q=author:#{user_nickname}&sort=author-date")[:items][0..2]
     end
     following_commits
   end
 
   def get_repos
-    response = @conn.get("/users/#{@user.nickname}/repos?sort=updated")
-    JSON.parse(response.body, symbolize_names: true)
+    get_json("/users/#{@user.nickname}/repos?sort=updated")
   end
+
+  private
+    attr_reader :user, :conn
+
+    def get_json(url)
+      response = conn.get(url)
+      JSON.parse(response.body, symbolize_names: true)
+    end
 end
