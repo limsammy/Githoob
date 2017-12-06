@@ -14,7 +14,6 @@ feature "User can view basic account info and activity on dashboard" do
     expect(current_path).to eq root_path
 
     expect(page).to have_css '.avatar'
-    expect(page).to have_css '.starred_repos'
     expect(page).to have_content 'Starred Repos (9)'
     expect(page).to have_css '.followers'
     expect(page).to have_content 'Followers (1)'
