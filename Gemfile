@@ -34,6 +34,11 @@ gem "omniauth-github"
 gem 'figaro'
 gem 'basscss-rails'
 
+group :test do
+  gem 'vcr'
+  gem 'webmock'
+end
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

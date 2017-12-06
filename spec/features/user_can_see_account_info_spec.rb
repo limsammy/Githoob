@@ -7,29 +7,31 @@ feature "User can view basic account info and activity on dashboard" do
   end
 
   scenario "user can see avatar, starred repos count, followers, following" do
-    visit '/'
+    VCR.use_cassette("basic_info") do
+      visit '/'
 
-    click_on 'Login with Github'
+      click_on 'Login with Github'
 
-    expect(current_path).to eq root_path
+      expect(current_path).to eq root_path
 
-    expect(page).to have_css '.avatar'
-    expect(page).to have_content 'Starred Repos (9)'
-    expect(page).to have_css '.followers'
-    expect(page).to have_content 'Followers (1)'
-    expect(page).to have_css '.following'
-    expect(page).to have_content 'Following (4)'
+      expect(page).to have_css '.avatar'
+      expect(page).to have_content 'Starred: 9'
+      expect(page).to have_content 'Followers: 1'
+      expect(page).to have_content 'Following: 4'
+    end
   end
 
   scenario "user can see summary of past commits" do
-    visit '/'
+    VCR.use_cassette("past_commits") do
+      visit '/'
 
-    click_on 'Login with Github'
+      click_on 'Login with Github'
 
-    expect(current_path). to eq root_path
+      expect(current_path). to eq root_path
 
-    expect(page).to have_css '.commit_feed'
-    expect(page).to have_css('.commit', count: 10)
+      expect(page).to have_css '.commit_feed'
+      expect(page).to have_css('.commit', count: 10)
+    end
   end
 
 end
