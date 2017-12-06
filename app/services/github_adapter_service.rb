@@ -1,4 +1,6 @@
 class GithubAdapterService
+  attr_reader :user, :conn
+
   def initialize(user)
     @user = user
     @conn = Faraday.new(url: 'https://api.github.com/') do |faraday|
